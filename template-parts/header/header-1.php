@@ -25,36 +25,9 @@ $biddut_header_right = get_theme_mod('header_right_switch', false);
 $biddut_menu_col = $biddut_header_right ? 'col-xl-8 d-none d-xl-block' : 'col-xl-10 d-none d-xl-block';
 $biddut_menu_end = $biddut_header_right ? 'text-xxl-start' : 'text-xxl-end menu-border-none';
 
-
-
-
-// above all added 
-
-
-// Phone Number
-$header_top_phone = get_theme_mod('header_phone', __('+8801310-069824', 'biddut'));
-
-// Header charity Text
-$header_top_charity_text = get_theme_mod('header_top_charity_text', __('Connect with our charity', 'biddut'));
-
-// Button Text
-$header_top_button_switch = get_theme_mod('header_top_button_switch', false);
-$header_top_button_text = get_theme_mod('header_button_text', __('Donate Now', 'biddut'));
-
-// Button Text
-$header_top_button_link = get_theme_mod('header_button_link', __('#', 'biddut'));
-
-$header_language_switch = get_theme_mod('header_language_switch', __('false', 'biddut'));
-$phone_number_url = preg_replace("/[^0-9]/", "", $header_top_phone);
-
-//    col-xl-7 d-none d-xl-block
-
 // header search btn 
-$header_search_switch = get_theme_mod('header_search_switch', true);
+$header_search_switch = get_theme_mod('header_search_switch', false);
 
-// header auth btn 
-$header_auth_switch = get_theme_mod('header_auth_switch', true);
-$header_auth_link = get_theme_mod('header_auth_link', "#");
 
 ?>
 
@@ -126,7 +99,10 @@ $header_auth_link = get_theme_mod('header_auth_link', "#");
                                 <div class="tp-header-right-action d-flex align-items-center justify-content-end">
                                     <div class="tp-header-right-icon-action d-none d-lg-block">
                                         <div class="tp-header-right-icon d-flex align-items-center">
-                                            <button class="search-open-btn"><i class="flaticon-loupe"></i></button>
+                                            <?php if (!empty($header_search_switch)) : ?>
+                                                <button class="search-open-btn"><i class="flaticon-loupe"></i></button>
+                                            <?php endif;
+                                            ?>
                                             <div class="tp-header-right-shop p-relative">
                                                 <a href="cart.html">
                                                     <i class="fa-light fa-bag-shopping"></i>
@@ -161,27 +137,5 @@ $header_auth_link = get_theme_mod('header_auth_link', "#");
     </div>
 </header>
 <main>
-    <!-- breadcrumb area start -->
-    <div class="breadcrumb__area breadcrumb__overlay breadcrumb__height p-relative fix" data-background="assets/img/breadcurmb/breadcurmb.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-xxl-12">
-                    <div class="breadcrumb__content z-index d-flex justify-content-between align-items-end">
-                        <div class="breadcrumb__section-title-box">
-                            <h4 class="breadcrumb__subtitle">BIDDUT ELCETRIC SERVICE</h4>
-                            <h3 class="breadcrumb__title">About us</h3>
-                        </div>
-                        <div class="breadcrumb__list">
-                            <span><a href="index.html">Home</a></span>
-                            <span class="dvdr"><i>/</i></span>
-                            <span>About us</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- breadcrumb area end -->
-
     <!-- header area end -->
     <?php get_template_part('template-parts/header/header-side-info'); ?>

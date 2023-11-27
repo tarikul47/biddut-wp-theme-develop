@@ -65,6 +65,15 @@ function biddut_breadcrumb_func()
     if ($con_main) {
         $bg_img_from_page = function_exists('tpmeta_image_field') ? tpmeta_image_field('biddut_breadcrumb_bg') : '';
 
+        // meta value 
+        $_breadcrumb_sub_title_page = function_exists('tpmeta_field') ? tpmeta_field('biddut_breadcrumb_sub_title') : '';
+
+        var_dump($_breadcrumb_sub_title_page);
+
+
+        $_breadcrumb_sub_title = get_theme_mod('breadcrumb_subtitle');
+        $__breadcrumb_sub_title = !empty($_breadcrumb_sub_title_page) ? $_breadcrumb_sub_title_page : $_breadcrumb_sub_title;
+
         $hide_bg_img = function_exists('tpmeta_field') ? tpmeta_field('biddut_check_bredcrumb_img') : 'on';
         // get_theme_mod
         $bg_img = get_theme_mod('breadcrumb_image');
@@ -78,36 +87,35 @@ function biddut_breadcrumb_func()
         }
 
 ?>
-
-        <!-- about breadcrumb area start -->
-        <section class="breadcrumb__area pt-165 pb-150 p-relative z-index-1 fix" data-bg-color="<?php echo esc_attr($breadcrumb_bg_color); ?>">
-            <div class="breadcrumb__bg" data-background="<?php print esc_attr($bg_main_img); ?>"></div>
+        <!-- breadcrumb area start -->
+        <div class="breadcrumb__area breadcrumb__overlay breadcrumb__height p-relative fix" data-bg-color="<?php echo esc_attr($breadcrumb_bg_color); ?> data-background=" <?php echo esc_attr($bg_main_img); ?>">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-sm-6">
-                        <div class="breadcrumb__content">
-                            <h3 class="breadcrumb__title"><?php echo biddut_kses($title); ?></h3>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="breadcrumb__content">
-                            <?php if (function_exists('bcn_display')) : ?>
-                                <div class="breadcrumb__list text-center text-sm-end">
-                                    <?php bcn_display(); ?>
-                                </div>
-                            <?php endif; ?>
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <div class="breadcrumb__content z-index d-flex justify-content-between align-items-end">
+                            <div class="breadcrumb__section-title-box">
+                                <?php if (!empty($__breadcrumb_sub_title)) : ?>
+                                    <h4 class="breadcrumb__subtitle"><?php echo esc_html($__breadcrumb_sub_title); ?></h4>
+                                <?php endif; ?>
+                                <h3 class="breadcrumb__title"> <?php echo biddut_kses($title); ?> </h3>
+                            </div>
+                            <div class="breadcrumb__list">
+                                <?php if (function_exists('bcn_display')) {
+                                    bcn_display();
+                                } ?>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- about breadcrumb area end -->
+        </div>
+        <!-- breadcrumb area end -->
 
     <?php
     }
 }
 
-//add_action( 'biddut_before_main_content', 'biddut_breadcrumb_func' );
+add_action('biddut_before_main_content', 'biddut_breadcrumb_func');
 
 // biddut_search_form
 function biddut_search_form()

@@ -179,7 +179,7 @@ function header_top_section()
             'settings' => 'header_button_text',
             'label'    => esc_html__('Button Text', 'biddut'),
             'section'  => 'header_top_section',
-            'default'  => esc_html__('Donate Now ', 'biddut'),
+            'default'  => esc_html__('MAKE APPOINMENT', 'biddut'),
             'priority' => 10,
         ]
     );
@@ -218,7 +218,7 @@ function header_top_section()
             'settings' => 'header_top_menu',
             'label'    => esc_html__('Header top menu', 'biddut'),
             'section'  => 'header_top_section',
-            'default'  => esc_html__('#', 'biddut'),
+            'default'  => esc_html__('Here need to set html menu', 'biddut'),
             'priority' => 10,
         ]
     );
@@ -472,6 +472,16 @@ function header_breadcrumb_section()
     );
 
     // header_logo_section section 
+    new \Kirki\Field\Text(
+        [
+            'settings'    => 'breadcrumb_subtitle',
+            'label'       => esc_html__('Breadcrumb Sub Title', 'biddut'),
+            'description' => esc_html__('Please add Breadcrumb Sub title Text', 'biddut'),
+            'section'     => 'header_breadcrumb_section',
+        ]
+    );
+
+
     new \Kirki\Field\Image(
         [
             'settings'    => 'breadcrumb_image',
